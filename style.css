@@ -6,7 +6,7 @@ html {
 }
 :root {
     --green: #25A18E;
-    --darkGreen: #03806c;
+    --darkGreen: #02705b;
 }
 body {
     font-family: 'Lato', sans-serif;
@@ -25,15 +25,16 @@ header {
 header h1 {
     text-align: center;
 }
+/*form*/
 form {
-    display: grid;
-    grid-template-rows: 50px 30px;
-    gap: 5px;
-    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    max-width: 500px;
 }
 .input-search {
     border: 1px solid var(--green);
-    height: 100%;
+    height: 50px;
     width: 70%;
     font-size: 25px;
     padding-left: 5px;
@@ -41,15 +42,22 @@ form {
 .button-search {
     background: var(--green);
     color: white;
+    font-size: 18px;
+    font-weight: 700;
     border: none;
-    height: 100%;
+    height: 50px;
     width: 80px;
+}
+.button-search:hover {
+    cursor: pointer;
+    background: var(--darkGreen);
 }
 .form-search {
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    margin: 10px;
 }
 .form-count {
     width: 100%;
@@ -57,23 +65,25 @@ form {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 .count {
     width: 15%;
-    height: 22px;
-    font-size: 18px;
+    height: 35px;
+    font-size: 22px;
     background: var(--green);
     color: white;
     margin: 5px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-width: 40px;
 }
 .form-count p {
-    height: 22px;
     font-size: 18px;
     margin: 5px;
     text-align: center;
-    min-width: 40px;
+    
 }
 .count:hover {
     background: var(--darkGreen);
@@ -82,9 +92,7 @@ form {
 .active {
     background: var(--darkGreen);
 }
-.container-images {
-    
-}
+/*photos*/
 .images {
     display: flex;
     flex-direction: row;
@@ -92,7 +100,7 @@ form {
     justify-content: space-around;
     
 }
-.image {
+.images .image {
     width: 250px;
     height: 250px;
     margin: 20px;
@@ -101,12 +109,19 @@ form {
     -moz-box-shadow: -6px 7px 42px 1px rgba(0,0,0,0.77);
     box-shadow: -6px 7px 42px 1px rgba(0,0,0,0.77);
     justify-content: center;
-    align-items: center;
-    
+    align-items: center; 
+    position: relative;
+    transition: transform 0.2s;
+}
+.image:hover {
+    background: lightgray;
+    cursor: pointer;
+    transform: scale(1.3,1.3);
+}
+.images .open {
 }
 img {
-    
     object-fit: cover;
-    width: 80%;
-    height: 80%;
+    width: 90%;
+    height: 90%;
 }

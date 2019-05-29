@@ -29,7 +29,7 @@ header h1 {
 form {
     display: flex;
     flex-wrap: wrap;
-    width: 70%;
+    width: 95%;
     max-width: 500px;
 }
 .input-search {

@@ -30,44 +30,45 @@ else {
 }}
 searchButton.addEventListener('click',downloadData);
 
-/*
+
 function removeLastNthChild(n) {
     let NumberOfChildren= containerImg.children.length;
     for(let i=(NumberOfChildren-1); i>=(NumberOfChildren-n); i--) {
-        containerImg.children[i].remove();
-        console.log('NumberOfChildren');
+        containerImg.children[i].remove();  
     }
-} */
+    nextStart = NumberOfChildren-n;
+} 
 
 function numberOfImages() {
     counts.forEach(count => count.classList.remove('active'));
     this.classList.add('active');
     numberImages = this.dataset.value;
-    if(inputValue && ((nextStart < parseInt(numberImages)) || numberImages ==='All')) {
-        insertImages(nextStart, numberImages);
+
+    if(inputValue && ((parseInt(nextStart) < parseInt(numberImages)) || numberImages ==='All')) {
+        insertImages(parseInt(nextStart), numberImages);
+    }
+    else if (inputValue && (parseInt(nextStart) > parseInt(numberImages))) {
+        let number = Math.abs(parseInt(numberImages)-parseInt(nextStart));
+        removeLastNthChild(number); 
+    }
+    else if (inputValue && nextStart ==='All') {
+        removeLastNthChild(containerImg.children.length-parseInt(numberImages));
     }
     
-    
- /*   else if (inputValue && (nextStart > parseInt(numberImages))) {
-        let number = Math.abs(parseInt(numberImages)-nextStart);
-        console.log(number);
-        removeLastNthChild(number);
-        
-    }*/
 }
 counts.forEach(count => count.addEventListener('click',numberOfImages));
 
 
 
-function insertImages(xStart, xEnd) {
+function insertImages(Start, End) {
     
     if(imgs.length === 0) {
         const p = document.createElement('p');
         p.innerText = `${inputValue} was not found`;
         containerImg.appendChild(p);
     }
-    else if(xEnd === 'All' || imgs.length < parseInt(xEnd)){
-        for(let i = xStart; i<imgs.length; i++) {
+    else if(End === 'All' || imgs.length < parseInt(End)){
+        for(let i = Start; i<imgs.length; i++) {
             let img = imgs[i];
             const divImg = document.createElement('div');
             divImg.classList.add('image');
@@ -79,11 +80,11 @@ function insertImages(xStart, xEnd) {
             link.target = '_blank';
             link.appendChild(divImg);
             containerImg.appendChild(link);
-            nextStart = parseInt(xEnd);
+            nextStart = End;
             }
     }
     else {
-        for(let i = xStart; i<parseInt(xEnd); i++) {
+        for(let i = Start; i<parseInt(End); i++) {
             let img = imgs[i];
             const divImg = document.createElement('div');
             divImg.classList.add('image');
@@ -95,8 +96,7 @@ function insertImages(xStart, xEnd) {
             link.target = '_blank';
             link.appendChild(divImg);
             containerImg.appendChild(link);
-            nextStart = parseInt(xEnd);
-            console.log(nextStart);
+            nextStart = End;
             }
     }
     containerImg.classList.add('images');
